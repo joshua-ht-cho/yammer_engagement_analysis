@@ -1,4 +1,5 @@
 -- Yammer User Engagement SQL Analysis (BigQuery)
+-- Query results are visualized in Tableau
 
 -- Step 1: Investigate tables using SELECT *
 -- Step 2: Find engagement trend by examining weekly active users from May through August 2022
