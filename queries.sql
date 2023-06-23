@@ -1,5 +1,5 @@
 -- Yammer User Engagement SQL Analysis (BigQuery)
-    -- SQL skills demonstrated: aggregate functions, subqueries, CTEs, table joins
+    -- SQL skills demonstrated: aggregate functions, subqueries, CTEs, table joins, case when
     -- Query results are visualized in Tableau
 
 -- CONTENTS
