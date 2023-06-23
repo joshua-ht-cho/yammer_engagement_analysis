@@ -1,12 +1,14 @@
 -- Yammer User Engagement SQL Analysis (BigQuery)
 -- Query results are visualized in Tableau
+-- Skills demonstrated: aggregate functions, subqueries, CTEs, table joins
 
--- Step 1: Investigate tables using SELECT *
--- Step 2: Find engagement trend by examining weekly active users from May through August 2022
--- Step 3: Examine user growth rate to see if stalling growth is the reason for decreased engagement
--- Step 4: Examine average account age by week to see if engagement is falling among existing older users
--- Step 5: Examine engagement by device type
--- Step 6: Examine email statistics
+-- CONTENTS
+    -- Step 1: Investigate tables using SELECT *
+    -- Step 2: Find engagement trend by examining weekly active users from May through August 2022
+    -- Step 3: Examine user growth rate to see if stalling growth is the reason for decreased engagement
+    -- Step 4: Examine average account age by week to see if engagement is falling among existing older users
+    -- Step 5: Examine engagement by device type
+    -- Step 6: Examine email statistics
 
 
 -- Step 1: Investigate tables using SELECT *
