@@ -5,13 +5,14 @@
 -- Step 3: Examine user growth rate to see if stalling growth is the reason for decreased engagement
 -- Step 4: Examine average account age by week to see if engagement is falling among existing older users
 -- Step 5: Examine engagement by device type
+-- Step 6: Examine email statistics
 
 
 -- Step 1: Investigate tables using SELECT *
 
-select * from yammer.users limit 100;
-select * from yammer.events limit 100;
-select * from yammer.emails limit 100;
+select * from yammer.users limit 100
+select * from yammer.events limit 100
+select * from yammer.emails limit 100
 
 
 -- Step 2: Find engagement trend by examining weekly active users from May through August 2022
@@ -66,7 +67,7 @@ order by 1
 
 
 -- Step 5: Examine engagement by device type
--- Query groups all individual devices into three categories: computer, tablet, and phone
+-- Query groups devices into three categories: computer, tablet, and phone
 
 select
     date_trunc(cast(occurred_at as timestamp), week) as week,
@@ -89,5 +90,52 @@ where event_type = 'engagement'
     and event_name = 'login'
 group by 1
 order by 1
-    
 
+
+-- Step 6: Examine email statistics
+-- Main goal of emails is to compel users to reengage with Yammer platform
+
+-- Statistics for email type, number of opens, and number of clickthroughs
+select
+    date_trunc(cast(occurred_at as timestmp), week) as week,
+    count(case when action = 'sent_weekly_digest' then user_id else null end) as weekly_emails,
+    count(case when action = 'sent_reengagement_email' then user_id else null end) as reengagement_emails,
+    count(case when action = 'email_open' then user_id else null end) as email_opens,
+    count(case when action = 'email_clickthrough' then user_id else null end) as email_clickthroughs
+from yammer.emails
+group by 1
+order by 1
+
+-- CTE to store email actions taken by users
+with email_actions as (
+    select
+        date_trunc(e1.occurred_at, week) as week,
+        count(case when e1.action = 'sent_weekly_digest' then e1.user_id else null end) as weekly_emails,
+        count(case when e1.action = 'sent_weekly_digest' then e2.user_id else null end) as weekly_opens,
+        count(case when e1.action = 'sent_weekly_digest' then e3.user_id else null end) as weekly_clickthroughs,
+        count(case when e1.action = 'sent_reengagement_email' then e1.user_id else null end) as retain_emails,
+        count(case when e1.action = 'sent_reengagement_email' then e2.user_id else null end) as retain_opens,
+        count(case when e1.action = 'sent_reengagement_email' then e3.user_id else null end) as retain_clickthroughs
+    from yammer.emails e1
+    left join yammer.emails e2
+    on e2.user_id = e1.user_id
+        and e2.occurred_at >= e1.occurred_at
+        and e2.occurred_at < timestamp_add(e1.occurred_at, interval 5 minute)
+        and e2.action = 'email_open'
+    left join yammer.emails e3
+    on e3.user_id = e2.user_id
+        and e3.occurred_at >= e2.occurred_at
+        and e3.occurred_at < timestamp_add(e2.occurred_at, interval 5 minute)
+        and e3.action = 'email_clickthrough'
+    where e1.action IN ('sent_weekly_digest','sent_reengagement_email')
+    group by 1
+),
+
+-- Query the above CTE to convert raw numbers into % rates
+select
+    a.week,
+    a.weekly_opens / case when a.weekly_emails = 0 then 1 else a.weekly_emails end as weekly_open_rate,
+    a.weekly_clickthroughs / case when a.weekly_emails = 0 then 1 else a.weekly_emails end as weekly_ctr,
+    a.retain_opens / case when a.retain_emails = 0 then 1 else a.retain_emails end as retain_open_rate,
+    a.retain_clickthroughs / case when a.retain_emails = 0 then 1 else a.retain_emails end as retain_ctr
+from email_actions
