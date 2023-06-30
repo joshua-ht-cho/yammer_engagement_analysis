@@ -9,10 +9,10 @@ Analysis of raw user data to identify causes of decreasing engagement for enterp
 - However, August saw a ***19% decrease*** in engagement over four weeks.
 
 ### Analysis:
-- Daily signups (new users) increased at a regular rate.
+- Daily signups (new users) increased at a regular rate -- stalling growth is not the reason for decreased engagement.
   - User growth rate was high on weekdays and low on weekends, which is logical for a business platform.
 - Average account age of active users began decreasing at the same time as engagement.
-  - From May to July, average account age climbed from 124 days to 143 days -- but fell back to 128 days in August.
+  - From May to July, average account age climbed from 124 days to 143 days -- but sharply fell back to 128 days in August.
   - This suggests that engagement decreased among existing older users.
 
 - Mobile device users declined sharply -- phone and tablet engagement fell 30% and 37%, respectively.
@@ -26,4 +26,4 @@ Analysis of raw user data to identify causes of decreasing engagement for enterp
 - Investigate the high-level relationship between weekly emails and mobile engagement.
   - Why is engagement driven by email content to such a large extent? Is this sustainable?
   - If mobile users are using Yammer only because they are reminded to by email, are we providing a good mobile product?
-- Validate these findings through A/B testing on future weekly emails.
+- Validate these findings through A/B testing and/or cohort analyses on future weekly emails.
