@@ -1,10 +1,10 @@
 # yammer_engagement_analysis
-Analysis of Yammer data to identify causes of decreasing user engagement in 2022. Interactive Tableau dashboard can be found here.
+Analysis of Yammer data to identify causes of decreasing user engagement in 2022. Interactive Tableau dashboard can be found [here](https://public.tableau.com/views/YammerUserEngagementDashboard/UserEngagementDashboard?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link).
 
 ## Summary of Insights
 ### Problem Overview:
 - Weekly active users steadily increased from May to July 2022.
-- However, August saw a ***19% decrease*** in engagment over four weeks.
+- However, August saw a ***19% decrease*** in engagement over four weeks.
 
 ### Analysis:
 - Daily signups (new users) increased at a regular rate.
