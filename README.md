@@ -1,4 +1,4 @@
-# yammer_engagement_analysis
+# Yammer Engagement Analysis
 Analysis of raw user data to identify causes of decreasing engagement for enterprise social networking platform Yammer. Interactive Tableau dashboard can be found [here](https://public.tableau.com/views/YammerUserEngagementDashboard/UserEngagementDashboard?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link).
 
 <img width="946" alt="yammer_dashboard" src="https://github.com/joshua-ht-cho/yammer_engagement_analysis/assets/134950540/cabb9d27-4545-4a91-bf86-26e7af3e689c">
